@@ -36,7 +36,7 @@ metadata {
     command "temperatureDown"
     command "toggleDesiredTemperature"
 
-    attribute "combinedStateAndSetpoint", "string"
+    attribute "combinedStateAndTemperature", "string"
 
     fingerprint inClusters: "0x5E, 0x86, 0x72, 0x5A, 0x73, 0x20, 0x27, 0x25, 0x26, 0x32, 0x85, 0x8E, 0x59, 0x70", outClusters: "0x20, 0x26", model: "0052", prod: "0002"
   }
@@ -95,10 +95,10 @@ metadata {
     standardTile("spacer", "spacerTile", decoration: "flat", width: 2, height: 2) {
     }
 
-    standardTile("toggleDesiredSetpoint", "device.combinedStateAndSetpoint", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-      state "default", label:'-', icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+    standardTile("toggleDesiredSetpoint", "device.combinedStateAndTemperature", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
+      state "default", label:'-', icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff", defaultState: true
 
-      state "off-4",  label:'4°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff", defaultState: true
+      state "off-4",  label:'4°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
       state "off-5",  label:'5°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
       state "off-6",  label:'6°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
       state "off-7",  label:'7°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
@@ -268,7 +268,7 @@ def raiseThermostatEvents(switchValue)
   def events = []
   events << createEvent(name: "switch", value: switchValue ? "on" : "off", type: "digital")
   events << createEvent(name: "thermostatOperatingState", value: switchValue ? "heating" : "idle", type: "digital")
-  events << createEvent(name: "combinedStateAndSetpoint", value: (switchValue ? "on" : "off") + "-" + currentInt("heatingSetpoint"), type: "digital")
+  events << createEvent(name: "combinedStateAndTemperature", value: (switchValue ? "on" : "off") + "-" + currentInt("temperature"), type: "digital")
   events
 }
 
@@ -277,14 +277,15 @@ def zwaveEvent(physicalgraph.zwave.commands.sensormultilevelv5.SensorMultilevelR
   // 1 = temperature
   if(cmd.sensorType == 1){
     def temperatureEvent = createEvent(name: "temperature", value: cmd.scaledSensorValue, unit: cmd.scale == 1 ? "°F" : "°C")
+    def combinedEvent = createEvent(name: "combinedStateAndTemperature", value: device.currentValue("switch") + "-" + cmd.scaledSensorValue)
     def onOffCommand = controlTemperature(cmd.scaledSensorValue, device.currentValue("heatingSetpoint"), device.currentValue("thermostatMode"))
 
     if(onOffCommand) {
-        [temperatureEvent, response(onOffCommand)]
-      }
-      else {
-        temperatureEvent
-      }
+      [temperatureEvent, combinedEvent, response(onOffCommand)]
+    }
+    else {
+      temperatureEvent
+    }
   }
   else {
     log.debug("WAT!")
@@ -360,7 +361,6 @@ def setHeatingSetpoint(desiredTemperature){
 
   sendEvent(name: "thermostatMode", value: "heat")
   sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: "°C")
-  sendEvent(name: "combinedStateAndSetpoint", value: device.currentValue("switch") + "-" + desiredTemperature.intValue())
 
   controlTemperature(currentDouble("temperature"), desiredTemperature, "heat")
 }
