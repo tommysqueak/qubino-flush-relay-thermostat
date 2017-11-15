@@ -3,7 +3,7 @@
  *
  *  https://github.com/tommysqueak/qubino-flush-relay-thermostat
  *
- *  Copyright 2016 Tom Philip
+ *  Copyright 2017 Tom Philip
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -16,7 +16,7 @@
  *
  */
 metadata {
-  definition (name: "Qubino Flush 1 Relay with Temperature Control v1", namespace: "tommysqueak", author: "Tom Philip") {
+  definition (name: "Qubino Flush 1 Relay with Temperature Control", namespace: "tommysqueak", author: "Tom Philip") {
     capability "Actuator"
     capability "Sensor"
     capability "Switch"
@@ -42,13 +42,12 @@ metadata {
   }
 
   simulator {
-    // TODO: define status and reply messages here
   }
 
   tiles(scale: 2) {
     multiAttributeTile(name:"switch", type:"thermostat", width:6, height:4, canChangeIcon: false) {
       tileAttribute("device.temperature", key: "PRIMARY_CONTROL") {
-        attributeState("default", label:'${currentValue}°', unit:"°C", backgroundColors:[
+        attributeState("default", label:'${currentValue}°', unit:"dC", backgroundColors:[
           // Celsius Color Range
           [value: 0, color: "#153591"],
           [value: 7, color: "#1e9cbb"],
@@ -59,7 +58,7 @@ metadata {
           [value: 36, color: "#bc2323"]])
       }
 
-      tileAttribute("device.temperature", key: "VALUE_CONTROL") {
+      tileAttribute("device.heatingSetpoint", key: "VALUE_CONTROL") {
         attributeState("VALUE_UP", action: "temperatureUp")
         attributeState("VALUE_DOWN", action: "temperatureDown")
       }
@@ -70,9 +69,9 @@ metadata {
       }
 
       tileAttribute("device.thermostatOperatingState", key: "OPERATING_STATE") {
-        attributeState("idle", label:'${name}', backgroundColor:"#80A2B7", icon: "st.thermostat.thermostat-down")
-        attributeState("heating", label:'${name}', backgroundColor:"#ffa81e", icon: "st.thermostat.heating")
-        attributeState("cooling", label:'${name}', backgroundColor:"#269bd2")
+        attributeState("idle", label:'${name}', backgroundColor:"#cccccc", icon: "st.thermostat.thermostat-down")
+        attributeState("heating", label:'${name}', backgroundColor:"#e86d13", icon: "st.thermostat.heating")
+        attributeState("cooling", label:'${name}', backgroundColor:"#00a0dc")
       }
 
       tileAttribute("device.thermostatMode", key: "THERMOSTAT_MODE") {
@@ -83,16 +82,13 @@ metadata {
       }
 
       tileAttribute("device.heatingSetpoint", key: "HEATING_SETPOINT") {
-        attributeState("default", label:'${currentValue}', unit:"°C")
+        attributeState("default", label:'${currentValue}', unit:"dC")
       }
     }
 
     standardTile("mode", "device.thermostatMode", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
       state "off", action:"on", icon: "st.thermostat.heating-cooling-off"
-      state "heat", action:"off", icon: "st.thermostat.auto", backgroundColor:"#A0DBA4"
-    }
-
-    standardTile("spacer", "spacerTile", decoration: "flat", width: 2, height: 2) {
+      state "heat", action:"off", icon: "st.thermostat.auto", backgroundColor:"#e86d13"
     }
 
     standardTile("toggleDesiredSetpoint", "device.combinedStateAndTemperature", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
@@ -171,18 +167,6 @@ metadata {
       state "on-36", label:'36°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
     }
 
-    standardTile("toggleDesiredSetpointVisible", "device.heatingSetpoint", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-      state("default", label:'toggle', icon: "st.tesla.tesla-hvac", action:"toggleDesiredTemperature", unit:"°C", backgroundColors:[
-        // Celsius Color Range
-        [value: 0, color: "#153591"],
-        [value: 7, color: "#1e9cbb"],
-        [value: 15, color: "#90d2a7"],
-        [value: 23, color: "#44b621"],
-        [value: 29, color: "#f1d801"],
-        [value: 33, color: "#d04e00"],
-        [value: 36, color: "#bc2323"]])
-    }
-
     valueTile("power", "device.power", decoration: "flat", width: 2, height: 1) {
       state "default", label:'${currentValue} W'
     }
@@ -197,7 +181,7 @@ metadata {
     }
 
     main("toggleDesiredSetpoint")
-    details("switch", "mode", "toggleDesiredSetpointVisible", "power", "energy","refresh", "spacer", "reset")
+    details("switch", "mode", "power", "reset", "energy", "refresh")
   }
 
   preferences {
@@ -270,9 +254,9 @@ def raiseThermostatEvents(switchValue)
 {
   //  Store switch on/off. And also the thermostate mode, either heating (switch on) or idle (switch off)
   def events = []
-  events << createEvent(name: "switch", value: switchValue ? "on" : "off", type: "digital")
-  events << createEvent(name: "thermostatOperatingState", value: switchValue ? "heating" : "idle", type: "digital")
-  events << createEvent(name: "combinedStateAndTemperature", value: (switchValue ? "on" : "off") + "-" + currentInt("temperature"), type: "digital")
+  events << createEvent(name: "switch", value: switchValue == 1 ? "on" : "off", type: "digital", displayed: false)
+  events << createEvent(name: "thermostatOperatingState", value: switchValue == 1 ? "heating" : "idle", type: "digital")
+  events << createEvent(name: "combinedStateAndTemperature", value: (switchValue == 1 ? "on" : "off") + "-" + currentInt("temperature"), displayed: false)
   events
 }
 
@@ -281,7 +265,7 @@ def zwaveEvent(physicalgraph.zwave.commands.sensormultilevelv5.SensorMultilevelR
   // 1 = temperature
   if(cmd.sensorType == 1){
     def temperatureEvent = createEvent(name: "temperature", value: cmd.scaledSensorValue, unit: cmd.scale == 1 ? "°F" : "°C")
-    def combinedEvent = createEvent(name: "combinedStateAndTemperature", value: device.currentValue("switch") + "-" + cmd.scaledSensorValue)
+    def combinedEvent = createEvent(name: "combinedStateAndTemperature", value: device.currentValue("switch") + "-" + cmd.scaledSensorValue, displayed: false)
     def onOffCommand = controlTemperature(cmd.scaledSensorValue, device.currentValue("heatingSetpoint"), device.currentValue("thermostatMode"))
 
     if(onOffCommand) {
@@ -363,8 +347,9 @@ def temperatureDown() {
 def setHeatingSetpoint(desiredTemperature){
   log.debug "setting heatpoint $desiredTemperature"
 
+  //  Not sure whether it should also turn on the thermostat, or whether it should just set the temp.
   sendEvent(name: "thermostatMode", value: "heat")
-  sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: "°C")
+  sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: "dC")
 
   controlTemperature(currentDouble("temperature"), desiredTemperature, "heat")
 }
