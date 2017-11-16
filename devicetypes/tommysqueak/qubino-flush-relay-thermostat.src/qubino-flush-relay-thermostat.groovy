@@ -94,77 +94,77 @@ metadata {
     standardTile("toggleDesiredSetpoint", "device.combinedStateAndTemperature", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
       state "default", label:'-', icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff", defaultState: true
 
-      state "off-4",  label:'4°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-5",  label:'5°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-6",  label:'6°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-7",  label:'7°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-8",  label:'8°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-9",  label:'9°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-10", label:'10°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-11", label:'11°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-12", label:'12°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-13", label:'13°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-14", label:'14°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-15", label:'15°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-16", label:'16°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-17", label:'17°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-18", label:'18°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-19", label:'19°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-20", label:'20°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-21", label:'21°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-22", label:'22°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-23", label:'23°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-24", label:'24°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-25", label:'25°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-26", label:'26°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-27", label:'26°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-28", label:'28°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-29", label:'29°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-30", label:'30°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-31", label:'31°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-32", label:'32°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-33", label:'33°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-34", label:'34°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-35", label:'35°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-36", label:'36°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-37", label:'37°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-38", label:'38°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-39", label:'39°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-40", label:'40°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-4",  label:'4°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-5",  label:'5°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-6",  label:'6°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-7",  label:'7°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-8",  label:'8°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-9",  label:'9°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-10", label:'10°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-11", label:'11°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-12", label:'12°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-13", label:'13°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-14", label:'14°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-15", label:'15°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-16", label:'16°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-17", label:'17°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-18", label:'18°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-19", label:'19°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-20", label:'20°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-21", label:'21°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-22", label:'22°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-23", label:'23°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-24", label:'24°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-25", label:'25°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-26", label:'26°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-27", label:'26°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-28", label:'28°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-29", label:'29°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-30", label:'30°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-31", label:'31°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-32", label:'32°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-33", label:'33°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-34", label:'34°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-35", label:'35°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-36", label:'36°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-37", label:'37°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-38", label:'38°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-39", label:'39°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-40", label:'40°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
 
-      state "on-4",  label:'4°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#153591"
-      state "on-5",  label:'5°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#153591"
-      state "on-6",  label:'6°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#153591"
-      state "on-7",  label:'7°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#153591"
-      state "on-8",  label:'8°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#153591"
-      state "on-9",  label:'9°',  action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
-      state "on-10", label:'10°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
-      state "on-11", label:'11°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
-      state "on-12", label:'12°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
-      state "on-13", label:'13°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
-      state "on-14", label:'14°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
-      state "on-15", label:'15°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
-      state "on-16", label:'16°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-17", label:'17°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-18", label:'18°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-19", label:'19°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-20", label:'20°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-21", label:'21°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-22", label:'22°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-23", label:'23°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-24", label:'24°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-25", label:'25°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
-      state "on-26", label:'26°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
-      state "on-27", label:'26°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
-      state "on-28", label:'28°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
-      state "on-29", label:'29°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
-      state "on-30", label:'30°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
-      state "on-31", label:'31°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
-      state "on-32", label:'32°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
-      state "on-33", label:'33°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
-      state "on-34", label:'34°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
-      state "on-35", label:'35°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
-      state "on-36", label:'36°', action:"toggleDesiredTemperature", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
+      state "heat-4",  label:'4°',  action:"off", icon: "st.thermostat.heating", backgroundColor: "#153591"
+      state "heat-5",  label:'5°',  action:"off", icon: "st.thermostat.heating", backgroundColor: "#153591"
+      state "heat-6",  label:'6°',  action:"off", icon: "st.thermostat.heating", backgroundColor: "#153591"
+      state "heat-7",  label:'7°',  action:"off", icon: "st.thermostat.heating", backgroundColor: "#153591"
+      state "heat-8",  label:'8°',  action:"off", icon: "st.thermostat.heating", backgroundColor: "#153591"
+      state "heat-9",  label:'9°',  action:"off", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
+      state "heat-10", label:'10°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
+      state "heat-11", label:'11°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
+      state "heat-12", label:'12°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
+      state "heat-13", label:'13°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
+      state "heat-14", label:'14°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
+      state "heat-15", label:'15°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#1e9cbb"
+      state "heat-16", label:'16°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-17", label:'17°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-18", label:'18°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-19", label:'19°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-20", label:'20°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-21", label:'21°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-22", label:'22°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-23", label:'23°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-24", label:'24°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-25", label:'25°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#ffa81e"
+      state "heat-26", label:'26°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
+      state "heat-27", label:'26°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
+      state "heat-28", label:'28°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
+      state "heat-29", label:'29°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
+      state "heat-30", label:'30°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#d04e00"
+      state "heat-31", label:'31°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
+      state "heat-32", label:'32°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
+      state "heat-33", label:'33°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
+      state "heat-34", label:'34°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
+      state "heat-35", label:'35°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
+      state "heat-36", label:'36°', action:"off", icon: "st.thermostat.heating", backgroundColor: "#bc2323"
     }
 
     valueTile("power", "device.power", decoration: "flat", width: 2, height: 1) {
@@ -254,9 +254,9 @@ def raiseThermostatEvents(switchValue)
 {
   //  Store switch on/off. And also the thermostate mode, either heating (switch on) or idle (switch off)
   def events = []
-  events << createEvent(name: "switch", value: switchValue == 1 ? "on" : "off", type: "digital", displayed: false)
-  events << createEvent(name: "thermostatOperatingState", value: switchValue == 1 ? "heating" : "idle", type: "digital")
-  events << createEvent(name: "combinedStateAndTemperature", value: (switchValue == 1 ? "on" : "off") + "-" + currentInt("temperature"), displayed: false)
+  events << createEvent(name: "switch", value: switchValue ? "on" : "off", displayed: false)
+  events << createEvent(name: "thermostatOperatingState", value: switchValue ? "heating" : "idle")
+  events << createCombinedStateEvent(device.currentValue("thermostatMode"), currentInt("temperature"))
   events
 }
 
@@ -265,7 +265,7 @@ def zwaveEvent(physicalgraph.zwave.commands.sensormultilevelv5.SensorMultilevelR
   // 1 = temperature
   if(cmd.sensorType == 1){
     def temperatureEvent = createEvent(name: "temperature", value: cmd.scaledSensorValue, unit: cmd.scale == 1 ? "°F" : "°C")
-    def combinedEvent = createEvent(name: "combinedStateAndTemperature", value: device.currentValue("switch") + "-" + cmd.scaledSensorValue, displayed: false)
+    def combinedEvent = createCombinedStateEvent(device.currentValue("thermostatMode"), cmd.scaledSensorValue)
     def onOffCommand = controlTemperature(cmd.scaledSensorValue, device.currentValue("heatingSetpoint"), device.currentValue("thermostatMode"))
 
     if(onOffCommand) {
@@ -317,7 +317,7 @@ def toggleDesiredTemperature() {
 def on() {
   log.debug("on")
   setThermostatMode("heat")
-  controlTemperature(device.currentValue("temperature"), device.currentValue("heatingSetpoint"), device.currentValue("thermostatMode"))
+  controlTemperature(device.currentValue("temperature"), device.currentValue("heatingSetpoint"), "heat")
 }
 
 def off() {
@@ -412,6 +412,7 @@ def auto() {
 def setThermostatMode(mode) {
   // thermostatMode - "emergency heat" "heat" "cool" "off" "auto"
   sendEvent(name: "thermostatMode", value: mode)
+  sendEvent(createCombinedStateEvent(mode, currentInt("temperature")))
 }
 
 def setCoolingSetpoint(number){}
@@ -512,6 +513,11 @@ def check() {
     zwave.configurationV1.configurationGet(parameterNumber: 110).format(),
     zwave.configurationV1.configurationGet(parameterNumber: 120).format(),
   ], 5000)
+}
+
+private createCombinedStateEvent(thermostateMode, temperature)
+{
+  createEvent(name: "combinedStateAndTemperature", value: thermostateMode + "-" + temperature, displayed: false)
 }
 
 private currentInt(attributeName)
