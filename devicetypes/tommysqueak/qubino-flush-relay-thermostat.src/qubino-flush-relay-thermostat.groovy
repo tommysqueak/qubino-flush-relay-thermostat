@@ -47,7 +47,7 @@ metadata {
   tiles(scale: 2) {
     multiAttributeTile(name:"switch", type:"thermostat", width:6, height:4, canChangeIcon: false) {
       tileAttribute("device.temperature", key: "PRIMARY_CONTROL") {
-        attributeState("default", label:'${currentValue}°', unit:"dC", backgroundColors:[
+        attributeState("default", label:'${currentValue}°', unit:"°C", backgroundColors:[
           // Celsius Color Range
           [value: 0, color: "#153591"],
           [value: 7, color: "#1e9cbb"],
@@ -59,36 +59,37 @@ metadata {
       }
 
       tileAttribute("device.heatingSetpoint", key: "VALUE_CONTROL") {
-        attributeState("VALUE_UP", action: "temperatureUp")
-        attributeState("VALUE_DOWN", action: "temperatureDown")
+        attributeState("VALUE_UP", action: "temperatureUp", icon: "st.Weather.weather2")
+        attributeState("VALUE_DOWN", action: "temperatureDown", icon: "st.Weather.weather2")
       }
 
       tileAttribute("device.switch", key: "SECONDARY_CONTROL") {
-        attributeState "on", label:'${name}', icon: "st.switches.switch.on"
-        attributeState "off", label:'${name}', icon: "st.switches.switch.off"
+        attributeState "on", label: "on", icon: "st.switches.switch.on"
+        attributeState "off", label: "off", icon: "st.switches.switch.off"
       }
 
       tileAttribute("device.thermostatOperatingState", key: "OPERATING_STATE") {
-        attributeState("idle", label:'${name}', backgroundColor:"#cccccc", icon: "st.thermostat.thermostat-down")
-        attributeState("heating", label:'${name}', backgroundColor:"#e86d13", icon: "st.thermostat.heating")
-        attributeState("cooling", label:'${name}', backgroundColor:"#00a0dc")
+        attributeState("default", label: "-", icon: "st.tesla.tesla-hvac", defaultState: true)
+        attributeState("idle", label: "idle", backgroundColor:"#cccccc")
+        attributeState("heating", label: "heating", backgroundColor:"#e86d13")
+        attributeState("cooling", label: "cooling", backgroundColor:"#00a0dc")
       }
 
       tileAttribute("device.thermostatMode", key: "THERMOSTAT_MODE") {
-        attributeState("off", label:'${name}')
-        attributeState("heat", label:'${name}')
-        attributeState("cool", label:'${name}')
-        attributeState("auto", label:'${name}')
+        attributeState("off", label: "off", icon: "st.thermostat.heating-cooling-off")
+        attributeState("heat", label: "heat", icon: "st.thermostat.heat")
+        attributeState("cool", label: "cool")
+        attributeState("auto", label: "auto")
       }
 
       tileAttribute("device.heatingSetpoint", key: "HEATING_SETPOINT") {
-        attributeState("default", label:'${currentValue}', unit:"dC")
+        attributeState("default", label:'${currentValue}', unit:"°C")
       }
     }
 
     standardTile("mode", "device.thermostatMode", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-      state "off", action:"on", icon: "st.thermostat.heating-cooling-off"
-      state "heat", action:"off", icon: "st.thermostat.heat"
+      state "off", action: "on", icon: "st.thermostat.heating-cooling-off"
+      state "heat", action: "off", icon: "st.thermostat.heat"
     }
 
     standardTile("toggleDesiredSetpoint", "device.combinedStateAndTemperature", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
@@ -384,7 +385,7 @@ def setHeatingSetpoint(desiredTemperature){
 
   //  Not sure whether it should also turn on the thermostat, or whether it should just set the temp.
   sendEvent(name: "thermostatMode", value: "heat")
-  sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: "dC")
+  sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: "°C")
 
   controlTemperature(currentDouble("temperature"), desiredTemperature, "heat")
 }
