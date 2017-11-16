@@ -88,7 +88,7 @@ metadata {
 
     standardTile("mode", "device.thermostatMode", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
       state "off", action:"on", icon: "st.thermostat.heating-cooling-off"
-      state "heat", action:"off", icon: "st.thermostat.auto", backgroundColor:"#e86d13"
+      state "heat", action:"off", icon: "st.thermostat.heat"
     }
 
     standardTile("toggleDesiredSetpoint", "device.combinedStateAndTemperature", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
