@@ -301,7 +301,7 @@ def zwaveEvent(physicalgraph.zwave.commands.sensormultilevelv5.SensorMultilevelR
   // 1 = temperature
   if(cmd.sensorType == 1){
     def temperatureEvent = createEvent(name: "temperature", value: cmd.scaledSensorValue, unit: cmd.scale == 1 ? "°F" : "°C")
-    def combinedEvent = createCombinedStateEvent(device.currentValue("thermostatMode"), device.currentValue("thermostatOperatingState"), cmd.scaledSensorValue)
+    def combinedEvent = createCombinedStateEvent(device.currentValue("thermostatMode"), device.currentValue("thermostatOperatingState"), cmd.scaledSensorValue.intValue())
     def onOffCommand = controlTemperature(cmd.scaledSensorValue, device.currentValue("heatingSetpoint"), device.currentValue("thermostatMode"))
 
     if(onOffCommand) {
@@ -363,7 +363,7 @@ def off() {
 }
 
 def temperatureUp() {
-  def nextTemp = currentDouble("heatingSetpoint") + 1
+  def nextTemp = currentDouble("heatingSetpoint") + 0.5
   //  TODO: have this as a safety value, set in config
   if (nextTemp > 30) {
       nextTemp = 30d
@@ -372,7 +372,7 @@ def temperatureUp() {
 }
 
 def temperatureDown() {
-  def nextTemp = currentDouble("heatingSetpoint") - 1
+  def nextTemp = currentDouble("heatingSetpoint") - 0.5
   //  TODO: have this as a safety value, set in config
   if (nextTemp < 4) {
     nextTemp = 4d
