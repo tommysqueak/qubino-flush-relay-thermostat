@@ -37,6 +37,8 @@ metadata {
     command "toggleDesiredTemperature"
 
     attribute "combinedStateAndTemperature", "string"
+    attribute "costPerHour", "number"
+    attribute "costToDate", "number"
 
     fingerprint inClusters: "0x5E, 0x86, 0x72, 0x5A, 0x73, 0x20, 0x27, 0x25, 0x26, 0x32, 0x85, 0x8E, 0x59, 0x70", outClusters: "0x20, 0x26", model: "0052", prod: "0002"
   }
@@ -205,8 +207,14 @@ metadata {
     valueTile("power", "device.power", decoration: "flat", width: 2, height: 1) {
       state "default", label:'${currentValue} W'
     }
+    valueTile("costPerHour", "device.costPerHour", decoration: "flat", width: 2, height: 1) {
+      state "default", label:'€ ${currentValue}'
+    }
     valueTile("energy", "device.energy", decoration: "flat", width: 2, height: 1) {
       state "default", label:'${currentValue} kWh'
+    }
+    valueTile("costToDate", "device.costToDate", decoration: "flat", width: 2, height: 1) {
+      state "default", label:'€ ${currentValue}'
     }
     standardTile("reset", "device.energy", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
       state "default", label:'reset kWh', action:"reset", icon: "st.Seasonal Fall.seasonal-fall-009"
@@ -216,7 +224,7 @@ metadata {
     }
 
     main("toggleDesiredSetpoint")
-    details("switch", "mode", "power", "reset", "energy", "refresh")
+    details("switch", "mode", "power", "costPerHour", "energy", "costToDate", "refresh", "reset")
   }
 
   preferences {
@@ -225,6 +233,7 @@ metadata {
     input "autoTurnOff", "number", title: "Automatically Turn Off (minutes)", description: "Turn off, if left on after so many minutes", range: "0..542", displayDuringSetup: false
     input "temperatureOffset", "decimal", title: "Temperature Offset (°C)", description: "Adjust temperature by this many degrees °C", range: "-10..10", displayDuringSetup: false, defaultValue: 0
     input "temperatureReportOnChange", "decimal", title: "Temperature Reporting Change (°C)", description: "Reports temperature when the change is by this amount °C", displayDuringSetup: false, defaultValue: 0.5
+    input "costPerKwh", type: "decimal", title: "Cost per kWh", required: false, displayDuringSetup: false
   }
 }
 
@@ -319,11 +328,33 @@ def zwaveEvent(physicalgraph.zwave.commands.sensormultilevelv5.SensorMultilevelR
 def zwaveEvent(physicalgraph.zwave.commands.meterv3.MeterReport cmd) {
   if (cmd.meterType == 1) {
     if (cmd.scale == 0) {
-      return createEvent(name: "energy", value: cmd.scaledMeterValue, unit: "kWh", displayed: false)
+      def powerEvent = createEvent(name: "energy", value: cmd.scaledMeterValue, unit: "kWh", displayed: false)
+      def costEvent
+
+      if (costPerKwh) {
+        double costAsDecimal = costPerKwh as double
+        costEvent = createEvent(name: "costToDate", value: String.format("%5.2f", cmd.scaledMeterValue * costAsDecimal), unit: "€", displayed: false)
+      }
+      else {
+        costEvent = createEvent(name: "costToDate", value: "-", unit: "€", displayed: false)
+      }
+
+      return [powerEvent, costEvent]
     } else if (cmd.scale == 1) {
       return createEvent(name: "energy", value: cmd.scaledMeterValue, unit: "kVAh", displayed: false)
     } else if (cmd.scale == 2) {
-      return createEvent(name: "power", value: Math.round(cmd.scaledMeterValue), unit: "W", displayed: false)
+      def powerEvent = createEvent(name: "power", value: Math.round(cmd.scaledMeterValue), unit: "W", displayed: false)
+      def costEvent
+
+      if (costPerKwh) {
+        double costAsDecimal = costPerKwh as double
+        costEvent = createEvent(name: "costPerHour", value: String.format("%5.2f", (cmd.scaledMeterValue / 1000) * costAsDecimal), unit: "€", displayed: false)
+      }
+      else {
+        costEvent = createEvent(name: "costPerHour", value: "-", unit: "€", displayed: false)
+      }
+
+      return [powerEvent, costEvent]
     } else {
       return createEvent(name: "electric", value: cmd.scaledMeterValue, unit: ["pulses", "V", "A", "R/Z", ""][cmd.scale - 3], displayed: false)
     }
