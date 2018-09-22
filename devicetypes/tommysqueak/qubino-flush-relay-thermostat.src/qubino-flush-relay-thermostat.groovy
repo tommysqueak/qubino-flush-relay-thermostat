@@ -567,11 +567,6 @@ def configure() {
     temperatureOffsetConfig = 32536
   }
 
-  Calendar rightNow = Calendar.getInstance();
-  rightNow.add(Calendar.YEAR, -1)
-  def now = rightNow.getTime().format("d MMM yyyy",location.timeZone)
-  sendEvent(name: "costResetAt", value: now, displayed: false)
-
   delayBetween([
     //  Switch type: 0 - mono-stable (push button), 1 - bi-stable
     zwave.configurationV1.configurationSet(parameterNumber: 1, size: 1, scaledConfigurationValue: switchTypeConfig).format(),
