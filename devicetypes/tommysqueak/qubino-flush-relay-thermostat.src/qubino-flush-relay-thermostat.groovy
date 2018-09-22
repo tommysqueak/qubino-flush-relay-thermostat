@@ -39,6 +39,9 @@ metadata {
     attribute "combinedStateAndTemperature", "string"
     attribute "costPerHour", "number"
     attribute "costToDate", "number"
+    attribute "previousCostToDate", "number"
+    attribute "costResetAt", "string"
+    attribute "previousCostToDateRange", "string"
 
     fingerprint inClusters: "0x5E, 0x86, 0x72, 0x5A, 0x73, 0x20, 0x27, 0x25, 0x26, 0x32, 0x85, 0x8E, 0x59, 0x70", outClusters: "0x20, 0x26", model: "0052", prod: "0002"
   }
@@ -214,17 +217,26 @@ metadata {
       state "default", label:'${currentValue} kWh'
     }
     valueTile("costToDate", "device.costToDate", decoration: "flat", width: 2, height: 1) {
-      state "default", label:'€ ${currentValue}'
+      state "default", label:'€${currentValue}'
+    }
+    valueTile("previousCostToDateRange", "device.previousCostToDateRange", decoration: "flat", width: 2, height: 1) {
+      state "default", label:'${currentValue}'
+    }
+    valueTile("previousCostToDate", "device.previousCostToDate", decoration: "flat", width: 2, height: 1) {
+      state "default", label:'€${currentValue}'
     }
     standardTile("reset", "device.energy", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
       state "default", label:'reset kWh', action:"reset", icon: "st.Seasonal Fall.seasonal-fall-009"
+    }
+    valueTile("costResetAt", "device.costResetAt", decoration: "flat", inactiveLabel: false, width: 2, height: 1) {
+      state "costResetAt", label:'Since:\n ${currentValue}'
     }
     standardTile("refresh", "device.power", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
       state "default", label:'', action:"refresh.refresh", icon:"st.secondary.refresh"
     }
 
     main("toggleDesiredSetpoint")
-    details("switch", "mode", "power", "costPerHour", "energy", "costToDate", "refresh", "reset")
+    details("switch", "mode", "power", "costPerHour", "energy", "costToDate", "refresh", "reset", "previousCostToDateRange", "previousCostToDate")
   }
 
   preferences {
@@ -511,6 +523,12 @@ def reset() {
     zwave.meterV2.meterGet(scale: 0).format(),
     zwave.meterV2.meterGet(scale: 2).format()
   ], 2000)
+
+
+  def now = new Date().format("d MMM yyyy",location.timeZone)
+  sendEvent(name: "previousCostToDateRange", value: device.currentValue("costResetAt") + "-" + now, displayed: false)
+  sendEvent(name: "costResetAt", value: now, displayed: false)
+  sendEvent(name: "previousCostToDate", value: currentDouble("costToDate"), displayed: false)
 }
 
 def configure() {
@@ -548,6 +566,11 @@ def configure() {
     //  32536 = 0°C - default.
     temperatureOffsetConfig = 32536
   }
+
+  Calendar rightNow = Calendar.getInstance();
+  rightNow.add(Calendar.YEAR, -1)
+  def now = rightNow.getTime().format("d MMM yyyy",location.timeZone)
+  sendEvent(name: "costResetAt", value: now, displayed: false)
 
   delayBetween([
     //  Switch type: 0 - mono-stable (push button), 1 - bi-stable
