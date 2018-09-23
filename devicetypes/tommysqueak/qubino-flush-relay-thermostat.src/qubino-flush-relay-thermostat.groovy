@@ -513,6 +513,15 @@ def refresh() {
     zwave.meterV2.meterGet(scale: 2).format(), // get Watts
     zwave.sensorMultilevelV5.sensorMultilevelGet(sensorType: 0x01).format(), //temperature
   ], 1000)
+
+  //  Temp. date corrections etc
+  //Calendar rightNow = Calendar.getInstance();
+  //rightNow.add(Calendar.YEAR, -1)
+  //def backThen = rightNow.getTime().format("d MMM yyyy",location.timeZone)
+  //sendEvent(name: "costResetAt", value: backThen, displayed: false)
+
+  //def now = new Date().format("d MMM yyyy",location.timeZone)
+  //sendEvent(name: "previousCostToDateRange", value: backThen + "-\n" + now + " ", displayed: false)
 }
 
 def reset() {
@@ -526,9 +535,12 @@ def reset() {
 
 
   def now = new Date().format("d MMM yyyy",location.timeZone)
-  sendEvent(name: "previousCostToDateRange", value: device.currentValue("costResetAt") + "-" + now, displayed: false)
-  sendEvent(name: "costResetAt", value: now, displayed: false)
-  sendEvent(name: "previousCostToDate", value: currentDouble("costToDate"), displayed: false)
+  sendEvent(name: "previousCostToDateRange", value: device.currentValue("costResetAt") + "-\n" + now, displayed: false)
+  sendEvent(name: "costResetAt", value: now, displayed: true)
+  sendEvent(name: "previousCostToDate", value: currentDouble("costToDate"), unit: "€", displayed: true)
+
+  sendEvent(name: "energy", value: 0, unit: "kWh", displayed: true)
+  sendEvent(name: "costToDate", value: 0, unit: "€", displayed: true)
 }
 
 def configure() {
