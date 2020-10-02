@@ -20,20 +20,18 @@
  *
  */
 metadata {
-  definition (name: "Qubino Flush 1 Relay with Temperature Control", namespace: "tommysqueak", author: "Tom Philip") {
-    capability "Actuator"
-    capability "Sensor"
+  definition (name: "Qubino Flush 1 Relay with Temperature Control v5", namespace: "tommysqueak", author: "Tom Philip",  ocfDeviceType: "oic.d.thermostat", vid: "e3b7a0a3-96a2-390d-af6d-db7a26767169", mnmn: "SmartThingsCommunity") {
+    capability "Thermostat"
+    capability "Thermostat Mode"
+    capability "Thermostat Heating Setpoint"
+    capability "Thermostat Operating State"
+
     capability "Switch"
     capability "Temperature Measurement"
     capability "Power Meter"
     capability "Energy Meter"
     capability "Refresh"
     capability "Configuration"
-
-    capability "Thermostat"
-    capability "Thermostat Mode"
-    capability "Thermostat Heating Setpoint"
-    capability "Thermostat Operating State"
 
     command "reset"
     command "temperatureUp"
@@ -582,6 +580,9 @@ def configure() {
     //  32536 = 0°C - default.
     temperatureOffsetConfig = 32536
   }
+
+  sendEvent(name: "supportedThermostatModes", value: ["heat", "off"], displayed: false)
+  sendEvent(name: "supportedThermostatFanModes", value: ["auto"], displayed: false)
 
   delayBetween([
     //  Switch type: 0 - mono-stable (push button), 1 - bi-stable
