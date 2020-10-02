@@ -20,7 +20,7 @@
  *
  */
 metadata {
-  definition (name: "Qubino Flush 1 Relay with Temperature Control v5", namespace: "tommysqueak", author: "Tom Philip",  ocfDeviceType: "oic.d.thermostat", vid: "e3b7a0a3-96a2-390d-af6d-db7a26767169", mnmn: "SmartThingsCommunity") {
+  definition (name: "Qubino Flush 1 Relay with Temperature Control v10", namespace: "tommysqueak", author: "Tom Philip",  ocfDeviceType: "oic.d.thermostat", vid: "778fbf4b-38e8-3d77-a902-aef87e285c12", mnmn: "SmartThingsCommunity") {
     capability "Thermostat"
     capability "Thermostat Mode"
     capability "Thermostat Heating Setpoint"
@@ -95,50 +95,50 @@ metadata {
     }
 
     standardTile("mode", "device.thermostatMode", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
-      state "off", action: "on", icon: "st.thermostat.heating-cooling-off"
+      state "off", action: "heat", icon: "st.thermostat.heating-cooling-off"
       state "heat", action: "off", icon: "st.thermostat.heat"
     }
 
     standardTile("toggleDesiredSetpoint", "device.combinedStateAndTemperature", inactiveLabel: false, decoration: "flat", width: 2, height: 2) {
       state "default", label:'-', icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff", defaultState: true
 
-      state "off-4",  label:'4°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-5",  label:'5°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-6",  label:'6°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-7",  label:'7°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-8",  label:'8°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-9",  label:'9°',  action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-10", label:'10°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-11", label:'11°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-12", label:'12°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-13", label:'13°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-14", label:'14°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-15", label:'15°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-16", label:'16°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-17", label:'17°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-18", label:'18°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-19", label:'19°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-20", label:'20°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-21", label:'21°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-22", label:'22°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-23", label:'23°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-24", label:'24°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-25", label:'25°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-26", label:'26°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-27", label:'26°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-28", label:'28°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-29", label:'29°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-30", label:'30°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-31", label:'31°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-32", label:'32°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-33", label:'33°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-34", label:'34°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-35", label:'35°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-36", label:'36°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-37", label:'37°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-38", label:'38°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-39", label:'39°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
-      state "off-40", label:'40°', action:"on", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-4",  label:'4°',  action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-5",  label:'5°',  action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-6",  label:'6°',  action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-7",  label:'7°',  action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-8",  label:'8°',  action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-9",  label:'9°',  action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-10", label:'10°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-11", label:'11°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-12", label:'12°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-13", label:'13°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-14", label:'14°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-15", label:'15°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-16", label:'16°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-17", label:'17°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-18", label:'18°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-19", label:'19°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-20", label:'20°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-21", label:'21°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-22", label:'22°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-23", label:'23°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-24", label:'24°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-25", label:'25°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-26", label:'26°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-27", label:'26°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-28", label:'28°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-29", label:'29°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-30", label:'30°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-31", label:'31°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-32", label:'32°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-33", label:'33°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-34", label:'34°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-35", label:'35°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-36", label:'36°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-37", label:'37°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-38", label:'38°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-39", label:'39°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
+      state "off-40", label:'40°', action:"heat", icon: "st.thermostat.heating-cooling-off", backgroundColor: "#ffffff"
 
       state "idle-4",  label:'4°',  action:"off", icon: "https://raw.githubusercontent.com/tommysqueak/qubino-flush-relay-thermostat/master/devicetypes/tommysqueak/qubino-flush-relay-thermostat.src/heating-cooling-idle@2x.png", backgroundColor: "#00a0dc"
       state "idle-5",  label:'5°',  action:"off", icon: "https://raw.githubusercontent.com/tommysqueak/qubino-flush-relay-thermostat/master/devicetypes/tommysqueak/qubino-flush-relay-thermostat.src/heating-cooling-idle@2x.png", backgroundColor: "#00a0dc"
@@ -272,32 +272,6 @@ def updated() {
   response(configure() + refresh())
 }
 
-//  NB I like the way to distingiush between, physical and digital events on the switch
-//  The module will send BasicReports when it's physical. But when it's done by code, we ask for BinaryReports, so it comes in as digital.
-def zwaveEvent_old(physicalgraph.zwave.commands.basicv1.BasicReport cmd)
-{
-  def events = []
-  def thermostatMode = cmd.value ? "heat" : "off"
-  def switchMode = cmd.value ? "on" : "off"
-
-  //  Set it up to be on/off and either 'off' or 'heating' in terms of the mode.
-  events << createEvent(name: "switch", value: switchMode, type: "physical")
-  events << createEvent(name: "thermostatOperatingState", value: cmd.value ? "heating" : "idle", type: "physical")
-  events << createEvent(name: "thermostatMode", value: thermostatMode, type: "physical")
-
-  //  If we're turning 'off', then there's nothing to do, we're completely off in terms of switch and thermostat mode.
-  //  If we're turning 'on'. Then we're in 'heating' mode and the controlTemperature() will decide whether it should remain on or turn-off
-  //  immediately and let the temperature control the off/on of the switch.
-  def onOffCommand = controlTemperature(device.currentValue("temperature"), device.currentValue("heatingSetpoint"), thermostatMode, switchMode)
-
-  if(onOffCommand) {
-    [events + response(onOffCommand)]
-  }
-  else {
-    events
-  }
-}
-
 def zwaveEvent(physicalgraph.zwave.commands.basicv1.BasicReport cmd)
 {
   raiseThermostatEvents(cmd.value)
@@ -310,10 +284,9 @@ def zwaveEvent(physicalgraph.zwave.commands.switchbinaryv1.SwitchBinaryReport cm
 
 def raiseThermostatEvents(switchValue)
 {
-  //  Store switch on/off. And also the thermostate mode, either heating (switch on) or idle (switch off)
+  //  Store the thermostat mode, either heating (switch on) or idle (switch off)
   def operatingState = switchValue ? "heating" : "idle"
   def events = []
-  events << createEvent(name: "switch", value: switchValue ? "on" : "off", displayed: false)
   events << createEvent(name: "thermostatOperatingState", value: operatingState)
   events << createCombinedStateEvent(device.currentValue("thermostatMode"), operatingState, currentInt("temperature"))
   events
@@ -395,18 +368,6 @@ def toggleDesiredTemperature() {
   }
 }
 
-def on() {
-  log.debug("on")
-  setThermostatMode("heat")
-  controlTemperature(device.currentValue("temperature"), device.currentValue("heatingSetpoint"), "heat")
-}
-
-def off() {
-  log.debug("off")
-  setThermostatMode("off")
-  turnOff()
-}
-
 def temperatureUp() {
   def nextTemp = currentDouble("heatingSetpoint") + 0.5
   //  TODO: have this as a safety value, set in config
@@ -427,58 +388,66 @@ def temperatureDown() {
 
 def setHeatingSetpoint(desiredTemperature){
   log.debug "setting heatpoint $desiredTemperature"
-
-  //  Not sure whether it should also turn on the thermostat, or whether it should just set the temp.
-  sendEvent(name: "thermostatMode", value: "heat")
   sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: "°C")
-
-  controlTemperature(currentDouble("temperature"), desiredTemperature, "heat")
+  controlTemperature(currentDouble("temperature"), desiredTemperature, device.currentValue("thermostatMode"))
 }
 
 def controlTemperature(currentTemperature, desiredTemperature, thermostatMode){
-  controlTemperature(currentTemperature, desiredTemperature, thermostatMode, device.currentValue("switch"))
+  controlTemperature(currentTemperature, desiredTemperature, thermostatMode, device.currentValue("thermostatOperatingState"))
 }
 
-def controlTemperature(currentTemperature, desiredTemperature, thermostatMode, switchMode){
+def controlTemperature(currentTemperature, desiredTemperature, thermostatMode, operatingState){
   def hysteresisOn = -0.4
   def hysteresisOff = 0.4
 
   //  If we've set a temp, and we're turning the radiator on and off to keep the room at that temperature
   //  aka 'heat' mode
   if(thermostatMode == "heat") {
-    if(desiredTemperature > (currentTemperature - hysteresisOn) && switchMode == "off") {
-      turnOn()
+    if(desiredTemperature > (currentTemperature - hysteresisOn) && operatingState == "idle") {
+      turnRadiatorOn()
     }
-    else if(desiredTemperature < (currentTemperature - hysteresisOff) && switchMode == "on") {
-      turnOff()
+    else if(desiredTemperature < (currentTemperature - hysteresisOff) && operatingState == "heating") {
+      turnRadiatorOff()
     }
   }
   else if(thermostatMode == "off") {
-    if(switchMode == "on") {
-      turnOff()
+    if(operatingState == "heating") {
+      turnRadiatorOff()
     }
   }
 }
 
-def turnOn() {
+def turnRadiatorOn() {
   zwave.basicV1.basicSet(value: 0xFF).format()
 }
 
-def turnOff() {
+def turnRadiatorOff() {
   zwave.basicV1.basicSet(value: 0x00).format()
 }
 
 
 //  ///////////////////
+//  Switch           //
+//  ///////////////////
+def on() {
+  log.debug("on")
+  heat()
+}
+
+def off() {
+  log.debug("off")
+  setThermostatMode("off")
+}
+
+//  ///////////////////
 //  Thermostat Mode  //
 //  ///////////////////
 def heat() {
-  on()
+  setThermostatMode("heat")
 }
 
 def emergencyHeat() {
-  //  TODO: we should have a temperature like 4C, if it drops below that then we 'heat' but only to 4C
-  setThermostatMode("emergency heat")
+  heat()
 }
 
 def cool() {
@@ -486,14 +455,26 @@ def cool() {
 }
 
 def auto() {
-  setThermostatMode("auto")
-  //  TODO: auto means scheduled, so it's like we're 'off' between certain times and 'heat' between other times
+  //  Unsupported. auto means scheduled, so it's like we're 'off' between certain times and 'heat' between other times
 }
 
 def setThermostatMode(mode) {
-  // thermostatMode - "emergency heat" "heat" "cool" "off" "auto"
-  sendEvent(name: "thermostatMode", value: mode)
+  log.debug "mode: $mode"
+  // thermostatMode - "emergency heat" "heat" "auto" "eco" "cool" "off" "rush hour"
+  def supportedMode = ["emergency heat", "heat", "auto", "eco"].contains(mode) ? "heat" : "off"
+
+  sendEvent(name: "thermostatMode", value: supportedMode)
+  sendEvent(name: "switch", value: supportedMode == "heat" ? "on" : "off", displayed: false)
   sendEvent(createCombinedStateEvent(mode, device.currentValue("thermostatOperatingState"), currentInt("temperature")))
+
+  switch(supportedMode) {
+    case "heat":
+      controlTemperature(device.currentValue("temperature"), device.currentValue("heatingSetpoint"), "heat")
+      break; 
+    case "off": 
+      turnRadiatorOff()
+      break; 
+  }
 }
 
 def setCoolingSetpoint(number){}
