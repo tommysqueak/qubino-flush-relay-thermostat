@@ -3,7 +3,7 @@
  *
  *  https://github.com/tommysqueak/qubino-flush-relay-thermostat
  *
- *  Copyright 2018 Tom Philip
+ *  Copyright 2020 Tom Philip
  *
  *  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  *  in compliance with the License. You may obtain a copy of the License at:
@@ -20,7 +20,7 @@
  *
  */
 metadata {
-  definition (name: "Qubino Flush 1 Relay with Temperature Control v10", namespace: "tommysqueak", author: "Tom Philip",  ocfDeviceType: "oic.d.thermostat", vid: "778fbf4b-38e8-3d77-a902-aef87e285c12", mnmn: "SmartThingsCommunity") {
+  definition (name: "Qubino Flush 1 Relay with Temperature Control v11", namespace: "tommysqueak", author: "Tom Philip",  ocfDeviceType: "oic.d.thermostat", vid: "778fbf4b-38e8-3d77-a902-aef87e285c12", mnmn: "SmartThingsCommunity") {
     capability "Thermostat"
     capability "Thermostat Mode"
     capability "Thermostat Heating Setpoint"
@@ -54,7 +54,7 @@ metadata {
   tiles(scale: 2) {
     multiAttributeTile(name:"switch", type:"thermostat", width:6, height:4, canChangeIcon: false) {
       tileAttribute("device.temperature", key: "PRIMARY_CONTROL") {
-        attributeState("default", label:'${currentValue}°', unit:"°C", backgroundColors:[
+        attributeState("default", label:'${currentValue}°', unit:"C", backgroundColors:[
           // Celsius Color Range
           [value: 0, color: "#153591"],
           [value: 7, color: "#1e9cbb"],
@@ -90,7 +90,7 @@ metadata {
       }
 
       tileAttribute("device.heatingSetpoint", key: "HEATING_SETPOINT") {
-        attributeState("default", label:'${currentValue}', unit:"°C")
+        attributeState("default", label:'${currentValue}', unit:"C")
       }
     }
 
@@ -296,7 +296,7 @@ def zwaveEvent(physicalgraph.zwave.commands.sensormultilevelv5.SensorMultilevelR
 {
   // 1 = temperature
   if(cmd.sensorType == 1){
-    def temperatureEvent = createEvent(name: "temperature", value: cmd.scaledSensorValue, unit: cmd.scale == 1 ? "°F" : "°C")
+    def temperatureEvent = createEvent(name: "temperature", value: cmd.scaledSensorValue, unit: cmd.scale == 1 ? "F" : "C")
     def combinedEvent = createCombinedStateEvent(device.currentValue("thermostatMode"), device.currentValue("thermostatOperatingState"), cmd.scaledSensorValue.intValue())
     def onOffCommand = controlTemperature(cmd.scaledSensorValue, device.currentValue("heatingSetpoint"), device.currentValue("thermostatMode"))
 
@@ -388,7 +388,7 @@ def temperatureDown() {
 
 def setHeatingSetpoint(desiredTemperature){
   log.debug "setting heatpoint $desiredTemperature"
-  sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: "°C")
+  sendEvent(name: "heatingSetpoint", value: desiredTemperature, unit: getTemperatureScale())
   controlTemperature(currentDouble("temperature"), desiredTemperature, device.currentValue("thermostatMode"))
 }
 
